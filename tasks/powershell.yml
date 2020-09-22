@@ -31,7 +31,7 @@
     stdin: |
      Get-NetAdapter | select name,ifindex,status,linkspeed | select -first 1 | ConvertTo-Json
   register: posh_adapters
-  changed_when: False # so we don't trigger a chance on each run
+  changed_when: False # so we don't trigger a change on each run
 
 - name: set facts
   set_fact:
