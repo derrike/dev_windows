@@ -1,0 +1,28 @@
+---
+# Tasks: Features
+#
+# Add Windows Feature to server
+#
+
+- name: add windows features for iis
+  win_feature:
+    name:
+      - Web-Server
+      - Web-Default-Doc
+      - Web-Static-Content
+      - Web-Http-Logging
+      - Web-Stat-Compression
+      - Web-Filtering
+      - Web-Net-Ext45
+      - Web-Asp-Net45
+      - Web-ISAPI-Ext
+      - Web-ISAPI-Filter
+      - NET-Framework-45-ASPNET
+      - NET-Framework-45-Core
+      - Web-Mgmt-Console
+    state: present
+  register: win_feature_iis
+
+- name: reboot for iis features
+  win_reboot:
+  when: win_feature_iis.reboot_required

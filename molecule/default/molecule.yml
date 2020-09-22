@@ -1,0 +1,34 @@
+---
+  dependency:
+    name: galaxy
+  driver:
+    name: vagrant
+  platforms:
+    - name: windows-2019
+      box: gusztavvargadr/windows-server
+      memory: 1024
+      cpus: 1
+  provisioner:
+    name: ansible
+    connection_options:
+      ansible_user: vagrant
+      ansible_password: vagrant
+      ansible_port: 55985
+      ansible_host: 127.0.0.1
+      ansible_connection: winrm
+      ansible_winrm_scheme: http
+      ansible_winrm_transport: basic
+      ansible_winrm_server_cert_validation: ignore
+      ansible_shell_type: powershell
+  verifier:
+   name: ansible
+
+
+  # verifier:
+  #   name: testinfra
+  #   directory: tests/
+  #   enabled: true
+  #   env:
+  #     PYTHONWARNINGS: "ignore:.*U.*mode is deprecated:DeprecationWarning"
+  #   options:
+  #     v: 1 # show which tests where executed in test output

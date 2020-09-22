@@ -1,0 +1,9 @@
+---
+# Tasks: Settings
+#
+# Controls a few settings on a Windows Server
+#
+
+- name: settings - set timezone to utc
+  win_timezone:
+    timezone: utc

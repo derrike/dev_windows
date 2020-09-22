@@ -1,0 +1,12 @@
+---
+# Tasks: Software
+#
+# Examples of how to install software
+#
+
+- name: software - install git and putty
+  win_chocolatey:
+    name:
+      - git
+      - putty
+    state: present

@@ -1,0 +1,26 @@
+---
+
+- debug:
+    msg: The zip location is {{ dev_windows['zip_location'] }}
+
+- name: file - create folder c:\temp
+  win_file:
+    path: C:\temp
+    state: directory
+
+- name: file - copy zip to c:\temp
+  win_copy:
+    src: zipped.zip
+    dest: C:\temp\zipped.zip
+    force: yes
+
+- name: file - unzip it
+  win_unzip:
+    dest: c:\temp\zipped # required. Destination of zip file (provide absolute path of directory). If it does not exist, the directory will be created.
+    src: C:\temp\zipped.zip # required. File to be unzipped (provide absolute path).
+    creates: C:\temp\zipped
+
+- name: file - test template
+  win_template:
+    src: test.txt
+    dest: C:\temp\test.txt

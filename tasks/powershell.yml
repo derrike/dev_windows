@@ -1,0 +1,41 @@
+---
+# Tasks: PowerShell
+#
+# Examples of how to manipulate OS with PowerShell
+#
+
+- name: powershell - testing a command
+  win_command: whoami
+  register: whoami_out
+  changed_when: False # so we don't trigger a chance on each run
+
+- name: powershell - testing a powershell script
+  win_command: powershell.exe -
+  args:
+    stdin: |
+      (Get-Item C:\test.txt) -ne $null
+  register: posh_out
+  changed_when: False # so we don't trigger a chance on each run
+
+
+- name: powershell - file
+  win_file:
+    path: C:\test.txt
+    state: touch
+  when: posh_out.stdout is match("False") # file doesn't exist
+  # when: (posh_out.stdout_lines| last) == "False"    ## filter the line output
+
+- name: powershell - get some json data
+  win_command: powershell.exe -
+  args:
+    stdin: |
+     Get-NetAdapter | select name,ifindex,status,linkspeed | select -first 1 | ConvertTo-Json
+  register: posh_adapters
+  changed_when: False # so we don't trigger a chance on each run
+
+- name: set facts
+  set_fact:
+    posh_adapters_fact: "{{ posh_adapters.stdout | from_json }}"
+
+- debug:
+    msg: "The speed of the adapter is {{ posh_adapters_fact['LinkSpeed'] }}"

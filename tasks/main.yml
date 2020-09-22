@@ -1,0 +1,14 @@
+---
+# tasks file for dev_windows
+
+# - import_tasks: module.yml - test with internet
+
+# - import_tasks: domain.yml
+
+- import_tasks: file.yml
+- import_tasks: module.yml
+- import_tasks: settings.yml
+- import_tasks: features.yml
+- import_tasks: firewall.yml
+- import_tasks: powershell.yml
+- import_tasks: software.yml

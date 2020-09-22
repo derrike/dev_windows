@@ -1,0 +1,38 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  tasks:
+  - name: Example assertion
+    assert:
+      that: true
+
+  - name: OS is not RedHat
+    assert:
+      that: "ansible_os_family != 'RedHat'"
+
+  - name: ipconfig regex match
+    win_command: powershell.exe -
+    args:
+      stdin: |
+        ipconfig
+    register: ipconfig
+  - debug:
+      var: ipconfig
+  - assert:
+      that:
+        - "'Windows IP Configuration' in ipconfig.stdout_lines" # a line must match exactly
+        - ipconfig['start'] is match("2020") # regex match
+
+  - name: whoami in matcher
+    win_command: powershell.exe -
+    args:
+      stdin: |
+        whoami
+    register: whoami
+  - debug:
+      var: whoami
+  - assert:
+      that:
+        - "'vagrant' in whoami.stdout"

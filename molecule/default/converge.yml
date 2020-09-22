@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include dev_windows"
+      include_role:
+        name: "dev_windows"

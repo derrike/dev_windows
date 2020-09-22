@@ -1,0 +1,12 @@
+---
+# Tasks: Module
+#
+# Installs PowerShell modules
+#
+
+- name: install active directory module
+  win_psmodule:
+      name: ActiveDirectoryDsc # required. Name of the powershell module that has to be installed.
+      state: present
+      # url: undefined # not required. URL of the custom repository to register.
+      # repository: undefined # not required. Name of the custom repository to register or use.

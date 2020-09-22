@@ -1,0 +1,5 @@
+---
+# vars file for dev_windows
+
+dev_windows:
+  zip_location: testing

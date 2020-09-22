@@ -1,0 +1,18 @@
+---
+# Tasks: Domain
+#
+# Joins the domain and reboots the computer
+#
+
+- name: domain - join domain 
+  win_domain_membership:
+    hostname: server1
+    domain_admin_user: derrike@hq.dev
+    domain_admin_password: "{{ domain_join_password }}"
+    state: domain
+    dns_domain_name: hq.dev
+  register: domain_state
+
+- name: domain - reboot now
+  win_reboot:
+  when: domain_state.reboot_required

@@ -1,0 +1,15 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Bootstrap python for Ansible
+      raw: |
+        whoami
+      changed_when: false
+
+# ---
+#   - name: Prepare
+#     hosts: all
+#     gather_facts: False
+#     tasks: []
