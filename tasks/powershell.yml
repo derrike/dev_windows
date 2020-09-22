@@ -7,7 +7,7 @@
 - name: powershell - testing a command
   win_command: whoami
   register: whoami_out
-  changed_when: False # so we don't trigger a chance on each run
+  changed_when: False # so we don't trigger a change on each run
 
 - name: powershell - testing a powershell script
   win_command: powershell.exe -
@@ -15,7 +15,7 @@
     stdin: |
       (Get-Item C:\test.txt) -ne $null
   register: posh_out
-  changed_when: False # so we don't trigger a chance on each run
+  changed_when: False # so we don't trigger a change on each run
 
 
 - name: powershell - file
