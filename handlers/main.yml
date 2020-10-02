@@ -1,2 +1,5 @@
 ---
 # handlers file for dev_windows
+
+- name: restart computer
+  win_reboot:

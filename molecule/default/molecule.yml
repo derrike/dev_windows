@@ -22,7 +22,11 @@
       ansible_shell_type: powershell
   verifier:
    name: ansible
-
+  lint: |
+    set -e
+    yamllint .
+    ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+    ansible-lint .
 
   # verifier:
   #   name: testinfra
