@@ -3,11 +3,16 @@
     name: galaxy
   driver:
     name: vagrant
+    provider:
+      name: virtualbox
+      options:
+        cpus: 2
   platforms:
     - name: windows-2019
       box: gusztavvargadr/windows-server
-      memory: 1024
-      cpus: 1
+      provider_raw_config_args:
+        - "memory = '2048'"
+        - "linked_clone = false"
   provisioner:
     name: ansible
     connection_options:
