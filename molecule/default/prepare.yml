@@ -25,3 +25,5 @@
             }
           }
           Optimize-PowershellAssemblies
+      register: optimize_posh
+      changed_when: "'Compiling assembly' in optimize_posh.stdout"
