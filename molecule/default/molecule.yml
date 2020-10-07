@@ -13,23 +13,23 @@
       provider_raw_config_args:
         - "memory = '2048'"
         - "linked_clone = false"
-    - name: windows-2020
-      box: gusztavvargadr/windows-server
-      provider_raw_config_args:
-        - "memory = '2048'"
-        - "linked_clone = false"
+    # - name: windows-2020
+    #   box: gusztavvargadr/windows-server
+    #   provider_raw_config_args:
+    #     - "memory = '2048'"
+    #     - "linked_clone = false"
   provisioner:
     name: ansible
     inventory:
       host_vars:
         windows-2019:
           ansible_port: "{{ lookup('file', '{{ playbook_dir }}/windows-2019.winrm') }}"
-        windows-2020:
-          ansible_port: "{{ lookup('file', '{{ playbook_dir }}/windows-2020.winrm') }}"
+        # windows-2020:
+        #   ansible_port: "{{ lookup('file', '{{ playbook_dir }}/windows-2020.winrm') }}"
     connection_options:
       ansible_user: vagrant
       ansible_password: vagrant
-      ansible_port: 55969
+      ansible_port: 55985 # this is overridden by host_vars
       ansible_host: 127.0.0.1
       ansible_connection: winrm
       ansible_winrm_scheme: http
