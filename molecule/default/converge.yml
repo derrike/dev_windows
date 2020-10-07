@@ -5,3 +5,13 @@
     - name: "Include dev_windows"
       include_role:
         name: "dev_windows"
+  # vars:
+  #   ansible_port: "{{ lookup('file', '{{playbook_dir}}/{{ ansible_play_hosts | first }}.winrm') }}"
+# - name: Converge
+#   hosts: windows-2020
+#   tasks:
+#     - name: "Include dev_windows"
+#       include_role:
+#         name: "dev_windows"
+#   vars:
+#     ansible_port: "{{ lookup('file', '{{playbook_dir}}/{{ ansible_play_hosts | first }}.winrm') }}"
